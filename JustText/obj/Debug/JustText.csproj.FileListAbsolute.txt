@@ -1,0 +1,11 @@
+D:\Project\JustText\bin\Debug\JustText.exe.config
+D:\Project\JustText\bin\Debug\JustText.exe
+D:\Project\JustText\bin\Debug\JustText.pdb
+D:\Project\JustText\bin\Debug\WindowsApp.exe
+D:\Project\JustText\bin\Debug\WindowsApp.pdb
+D:\Project\JustText\bin\Debug\WindowsApp.exe.config
+D:\Project\JustText\obj\Debug\JustText.csprojAssemblyReference.cache
+D:\Project\JustText\obj\Debug\JustText.csproj.CoreCompileInputs.cache
+D:\Project\JustText\obj\Debug\JustText.csproj.CopyComplete
+D:\Project\JustText\obj\Debug\JustText.exe
+D:\Project\JustText\obj\Debug\JustText.pdb

@@ -1,0 +1,10 @@
+D:\Project\WindowsApp\bin\Debug\WindowsApp.exe.config
+D:\Project\WindowsApp\bin\Debug\WindowsApp.exe
+D:\Project\WindowsApp\bin\Debug\WindowsApp.pdb
+D:\Project\WindowsApp\obj\Debug\WindowsApp.csprojAssemblyReference.cache
+D:\Project\WindowsApp\obj\Debug\WindowsApp.Form1.resources
+D:\Project\WindowsApp\obj\Debug\WindowsApp.Properties.Resources.resources
+D:\Project\WindowsApp\obj\Debug\WindowsApp.csproj.GenerateResource.cache
+D:\Project\WindowsApp\obj\Debug\WindowsApp.csproj.CoreCompileInputs.cache
+D:\Project\WindowsApp\obj\Debug\WindowsApp.exe
+D:\Project\WindowsApp\obj\Debug\WindowsApp.pdb
