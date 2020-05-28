@@ -11,15 +11,9 @@ namespace JustText
     {
         static void Main(string[] args)
         {
-            DateTime date = new DateTime(2009, 2, 24);
+            DateTime date = new DateTime(2020, 2, 21);
             NationalBankXmlData xml = new NationalBankXmlData();
-            string s;
-            Console.WriteLine("ФУНТ СТЕРЛИНГОВ СОЕДИНЕННОГО КОРОЛЕВСТВА");
-            for (int i = 0; i < 5; i++)
-            {
-                s = xml.GetData("ФУНТ СТЕРЛИНГОВ СОЕДИНЕННОГО КОРОЛЕВСТВА", date.AddDays(i));
-                Console.WriteLine(s + " " + date.AddDays(i));
-            }
+            string[] res = xml.GetDataArray("ФУНТ СТЕРЛИНГОВ СОЕДИНЕННОГО КОРОЛЕВСТВА", date, 15);
         }
     }
 }

@@ -11,9 +11,20 @@ namespace WindowsApp
     {
         XmlDocument xDoc = new XmlDocument();
         XmlElement xRoot;
-        public NationalBankXmlData()
+
+        public string[] GetDataArray(string currency, DateTime date, int days)
         {
-            
+            string[] result = new string[days];
+            for (int i = 0; i < days; i++)
+            {
+                result[i] = GetData(currency, date.AddDays(i));
+            }
+            foreach (string item in result)
+            {
+                Console.WriteLine(item);
+            }
+            return result;
+
         }
 
         public string GetData(string currency, DateTime date)
@@ -33,19 +44,13 @@ namespace WindowsApp
                     foreach (XmlNode childNode in xnode.ChildNodes)
                     {
                         if (childNode.InnerText == currency)
-                        {
                             found = true;
-                        }
-                        if (found)
+                        if (found && childNode.Name == "description")
                         {
-                            if (childNode.Name == "description")
-                            {
-                                result = childNode.InnerText;
-                                exit = true;
-                                break;
-                            }
+                            result = childNode.InnerText;
+                            exit = true;
+                            break;
                         }
-                        
                     }
                 }
             }

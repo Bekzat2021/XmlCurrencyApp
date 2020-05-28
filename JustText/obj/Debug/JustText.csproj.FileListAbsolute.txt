@@ -9,3 +9,13 @@ D:\Project\JustText\obj\Debug\JustText.csproj.CoreCompileInputs.cache
 D:\Project\JustText\obj\Debug\JustText.csproj.CopyComplete
 D:\Project\JustText\obj\Debug\JustText.exe
 D:\Project\JustText\obj\Debug\JustText.pdb
+D:\WfApp\JustText\bin\Debug\JustText.exe.config
+D:\WfApp\JustText\bin\Debug\JustText.exe
+D:\WfApp\JustText\bin\Debug\JustText.pdb
+D:\WfApp\JustText\bin\Debug\WindowsApp.exe
+D:\WfApp\JustText\bin\Debug\WindowsApp.pdb
+D:\WfApp\JustText\bin\Debug\WindowsApp.exe.config
+D:\WfApp\JustText\obj\Debug\JustText.csprojAssemblyReference.cache
+D:\WfApp\JustText\obj\Debug\JustText.csproj.CopyComplete
+D:\WfApp\JustText\obj\Debug\JustText.exe
+D:\WfApp\JustText\obj\Debug\JustText.pdb

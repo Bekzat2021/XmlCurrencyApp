@@ -12,6 +12,8 @@ namespace WindowsApp
 {
     public partial class Form1 : Form
     {
+        string currnecy = "АВСТРАЛИЙСКИЙ ДОЛЛАР";
+        NationalBankXmlData xml = new NationalBankXmlData();
         public Form1()
         {
             InitializeComponent();
@@ -21,25 +23,22 @@ namespace WindowsApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DateTime date;// = new DateTime(2009, 2, 24);
+            DateTime date;
             date = dateTimePicker1.Value;
-            label1.Text = dateTimePicker1.Value.ToString();
-            NationalBankXmlData xml = new NationalBankXmlData();
             string s;
             
-            chart1.Series.Add("ФУНТ СТЕРЛИНГОВ СОЕДИНЕННОГО КОРОЛЕВСТВА");
-            chart1.Series["ФУНТ СТЕРЛИНГОВ СОЕДИНЕННОГО КОРОЛЕВСТВА"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chart1.Series["ФУНТ СТЕРЛИНГОВ СОЕДИНЕННОГО КОРОЛЕВСТВА"].IsValueShownAsLabel = true;
+            chart1.Series.Add(currnecy);
+            chart1.Series[currnecy].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart1.Series[currnecy].IsValueShownAsLabel = true;
             chart1.ChartAreas[0].AxisY.IsStartedFromZero = false;
             chart1.ChartAreas[0].BackColor = Color.LightYellow;
             for (int i = 0; i < 5; i++)
             {
-                s = xml.GetData("ФУНТ СТЕРЛИНГОВ СОЕДИНЕННОГО КОРОЛЕВСТВА", date.AddDays(i));
-                chart1.Series["ФУНТ СТЕРЛИНГОВ СОЕДИНЕННОГО КОРОЛЕВСТВА"].
+                s = xml.GetData(currnecy, date.AddDays(i));
+                chart1.Series[currnecy].
                     Points.AddXY(date.AddDays(i).ToString("dd.MM.yyyy"), s);
-                //Console.WriteLine(s + " " + date.AddDays(i));
             }
-            
+
         }
     }
 }
