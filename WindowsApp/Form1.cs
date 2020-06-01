@@ -27,7 +27,19 @@ namespace WindowsApp
         {
             DateTime date1 = dateTimePicker1.Value;
             DateTime date2 = dateTimePicker2.Value;
+
             int days = (date2 - date1).Days + 1;
+            if (days < 1)
+            {
+                MessageBox.Show("Дата окончания не может быть меньше даты начала.");
+                return;
+            }
+            if (DateTime.Now < date1 || date2 > DateTime.Now)
+            {
+                MessageBox.Show("Неправильный выбор даты.");
+                return;
+            }
+
             label3.Text = $"Вы выбрали диапазон в {days.ToString()} дня";
             chart1.Series.Add(currnecy);
             chart1.Series[currnecy].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
