@@ -11,11 +11,16 @@ namespace JustText
     {
         static void Main(string[] args)
         {
-            DateTime date = new DateTime(2020, 2, 21);
+            DateTime date = new DateTime(2009, 2, 23);
             NationalBankXmlData xml = new NationalBankXmlData();
             //string[] res = xml.GetDataArray("ФУНТ СТЕРЛИНГОВ СОЕДИНЕННОГО КОРОЛЕВСТВА", date, 15);
 
-            string[] res2 = xml.GetCurrencyArray(date);
+            //foreach (var item in res)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            List<string> res2 = xml.GetCurrnecies(date);
 
             foreach (var item in res2)
             {

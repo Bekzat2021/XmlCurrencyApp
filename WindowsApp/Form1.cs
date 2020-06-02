@@ -12,7 +12,7 @@ namespace WindowsApp
 {
     public partial class Form1 : Form
     {
-        string currnecy = "АВСТРАЛИЙСКИЙ ДОЛЛАР";
+        string currnecy;
         NationalBankXmlData xml = new NationalBankXmlData();
         public Form1()
         {
@@ -41,6 +41,7 @@ namespace WindowsApp
             }
 
             label3.Text = $"Вы выбрали диапазон в {days.ToString()} дня";
+            currnecy = comboBox1.SelectedItem.ToString();
             chart1.Series.Add(currnecy);
             chart1.Series[currnecy].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chart1.Series[currnecy].IsValueShownAsLabel = true;
@@ -55,6 +56,19 @@ namespace WindowsApp
             {
                 chart1.Series[currnecy].
                     Points.AddXY(date1.AddDays(i).ToString("dd.MM.yyyy"), res[i]);
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime date1 = dateTimePicker1.Value;
+
+            List<string> res2 = xml.GetCurrnecies(date1);
+            res2.ToArray();
+
+            for (int i = 0; i < res2.Count; i++)
+            {
+                comboBox1.Items.Add(res2[i]);
             }
         }
     }
