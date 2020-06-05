@@ -12,7 +12,6 @@ namespace WindowsApp
 {
     public partial class Form1 : Form
     {
-        string currnecy;
         List<Color> existedColors = new List<Color>();
         NationalBankXmlData xml = new NationalBankXmlData();
         public Form1()
@@ -43,23 +42,46 @@ namespace WindowsApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DateTime date1 = dateTimePicker1.Value;
-            DateTime date2 = dateTimePicker2.Value;
+            DateTime beginDate = dateTimePicker1.Value;
+            DateTime endDate = dateTimePicker2.Value;
 
-            int days = (date2 - date1).Days + 1;
+            int days = (endDate - beginDate).Days + 1;
+            if (CheckDate(beginDate, endDate, days) == false)
+                return;
+
+            label3.Text = $"Вы выбрали диапазон в {days.ToString()} дня";
+            string currnecy = comboBox1.SelectedItem.ToString();
+            SetChart1Settings(currnecy);
+            FillChart1(currnecy, beginDate, endDate, days);
+        }
+
+        private void FillChart1(string currency, DateTime beginDate, DateTime endDate, int days)
+        {
+            string[] res = xml.GetDataArray(currency, beginDate, days);
+            for (int i = 0; i < days; i++)
+            {
+                chart1.Series[currency].
+                    Points.AddXY(beginDate.AddDays(i).ToString("dd.MM.yyyy"), res[i]);
+            }
+        }
+
+        private bool CheckDate(DateTime beginDate, DateTime endDate, int days)
+        {
             if (days < 1)
             {
                 MessageBox.Show("Дата окончания не может быть меньше даты начала.");
-                return;
+                return false;
             }
-            if (DateTime.Now < date1 || date2 > DateTime.Now)
+            if (DateTime.Now < beginDate || endDate > DateTime.Now)
             {
                 MessageBox.Show("Неправильный выбор даты.");
-                return;
+                return false;
             }
+            return true;
+        }
 
-            label3.Text = $"Вы выбрали диапазон в {days.ToString()} дня";
-            currnecy = comboBox1.SelectedItem.ToString();
+        private void SetChart1Settings(string currnecy)
+        {
             chart1.Series.Add(currnecy);
             chart1.Series[currnecy].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chart1.Series[currnecy].IsValueShownAsLabel = true;
@@ -68,13 +90,6 @@ namespace WindowsApp
             chart1.Series[currnecy].BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDotDot;
             chart1.ChartAreas[0].AxisY.IsStartedFromZero = false;
             chart1.ChartAreas[0].BackColor = Color.LightYellow;
-
-            string[] res = xml.GetDataArray(currnecy, date1, days);
-            for (int i = 0; i < days; i++)
-            {
-                chart1.Series[currnecy].
-                    Points.AddXY(date1.AddDays(i).ToString("dd.MM.yyyy"), res[i]);
-            }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
