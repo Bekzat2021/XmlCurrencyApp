@@ -9,10 +9,6 @@ namespace WindowsApp
 {
     public class NationalBankXmlData
     {
-        XmlDocument xDoc = new XmlDocument();
-        XmlElement xRoot;
-        string connection; 
-
         public string[] GetDataArray(string currency, DateTime date, int days)
         {
             string[] result = new string[days];
@@ -25,10 +21,7 @@ namespace WindowsApp
 
         public string GetData(DateTime date, string currency)
         {
-            connection = "https://nationalbank.kz/rss/get_rates.cfm?fdate=" + date.ToString("dd.MM.yyyy");
-            xDoc.Load(connection);
-            xRoot = xDoc.DocumentElement;
-
+            XmlElement xRoot = GetConnection(date);
             string result = "";
 
             bool exit = false;
@@ -56,11 +49,17 @@ namespace WindowsApp
             return result;
         }
 
+        private XmlElement GetConnection(DateTime date)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            string connection = "https://nationalbank.kz/rss/get_rates.cfm?fdate=" + date.ToString("dd.MM.yyyy");
+            xDoc.Load(connection);
+            return xDoc.DocumentElement;
+        }
+
         public List<string> GetCurrnecies(DateTime date)
         {
-            connection = "https://nationalbank.kz/rss/get_rates.cfm?fdate=" + date.ToString("dd.MM.yyyy");
-            xDoc.Load(connection);
-            xRoot = xDoc.DocumentElement;
+            XmlElement xRoot = GetConnection(date);
             List<string> result = new List<string>();
             
             foreach (XmlNode xnode in xRoot)
